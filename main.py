@@ -19,7 +19,7 @@ def get_claude_response(token: str, model: str, prompt: str):
     )
     client.close()
 
-    return message.content[0].text
+    return message
 
 def post_webex_message(token: str, message: str, files=None):
 
@@ -59,9 +59,11 @@ if __name__ == "__main__":
     if post_as_file:
         post_as_file = f'.{t.year}{t.month}{t.day}.'.join(post_as_file.split('.'))
         with open(post_as_file, "w") as f:
-            f.write(response)
-        message = f'# Joke of the day {t.month}/{t.day}/{t.year}'
+            f.write(response.content[0].text)
+        message = f'# THD Weekly Update {t.month}/{t.day}/{t.year}'
     else:
-        message = f'# Joke of the day {t.month}/{t.day}/{t.year}\n\n{response}'
+        message = f'# THD Weekly Update {t.month}/{t.day}/{t.year}\n\n{response.content[0].text}'
 
     post_webex_message(webex_key, message, files=[post_as_file])
+    print(f'{t.month:02}/{t.day:02}-{t.hour:02}:{t.minute:02} '
+          f'Input Tokens: {response.usage.inputTokens}  Output Tokens: {response.usage.outputTokens}')
