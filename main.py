@@ -5,9 +5,10 @@ from dotenv import load_dotenv
 from datetime import datetime
 
 
-def get_claude_response(token: str, model: str, prompt: str):
+def get_claude_response(token: str, model: str, prompt: str, max_tokens: int):
     client = Anthropic(api_key=token)
     message = client.messages.create(
+        max_tokens=max_tokens,
         messages=[
             {
                 "role": "user",
@@ -44,6 +45,7 @@ if __name__ == "__main__":
     room_name = os.getenv("ROOM_TITLE")
     claude_api = os.getenv("ANTHROPIC_API_KEY")
     ai_model = os.getenv("ANTHROPIC_MODEL")
+    token_limit = os.getenv("ANTHROPIC_TOKEN_LIMIT")
     post_as_file = os.getenv("POST_AS_FILE")
 
     room_id = get_room_id(webex_key, room_name)
@@ -52,7 +54,7 @@ if __name__ == "__main__":
         exit(1)
 
     ai_prompt = open("prompt.txt", "r").read()
-    response = get_claude_response(token=claude_api, model=ai_model, prompt=ai_prompt)
+    response = get_claude_response(token=claude_api, model=ai_model, prompt=ai_prompt, max_tokens=int(token_limit))
 
     t = datetime.today()
     if post_as_file:
