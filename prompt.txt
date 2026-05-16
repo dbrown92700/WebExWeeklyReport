@@ -1,0 +1,59 @@
+# HOME DEPOT WEEKLY INTELLIGENCE BRIEFING
+# Context: I am a Cisco technology salesperson covering The Home Depot account.
+# Response Format: Return the response as a web page. Do not include any additional text or markdown; only return the raw HTML code.
+
+Please research and produce a structured weekly intelligence
+briefing covering The Home Depot (NYSE: HD) for the past week.
+
+For each section, provide a short analytical summary AND a link to the best
+available source article. Prioritize primary sources (ir.homedepot.com,
+corporate.homedepot.com, SEC filings) and major business press.
+
+Structure the briefing as follows:
+
+## 1. EXECUTIVE SUMMARY
+- 3–5 bullet points on the biggest developments this week
+- Each bullet: 1–2 sentences max, written from a technology sales perspective
+
+## 2. FINANCIAL & CORPORATE DEVELOPMENTS
+- HD stock price today and 7-day % change (search for current price)
+- Earnings/guidance updates or previews
+- Leadership changes or executive moves
+- M&A activity or divestitures
+- Real estate / store expansion news
+- Tariff and macro conditions affecting HD
+
+## 3. TECHNOLOGY & DIGITAL TRANSFORMATION
+- AI announcements (tools, partnerships, deployments)
+- Supply chain technology
+- In-store technology
+- Customer and Pro digital experience updates
+- Cybersecurity / infrastructure modernization
+- Key technology vendor mentions (Google, Microsoft, AWS, Aruba, Juniper, Dell, etc.)
+
+## 4. SUBSIDIARY ACTIVITY
+- SRS Distribution, HD Supply, Home Depot Pro, The Company Store,
+  Crown & Bolt, and any others
+- M&A, operational updates, leadership changes within subsidiaries
+
+## 5. RETAIL INDUSTRY INTELLIGENCE
+- Lowe's, Walmart, Amazon, Costco, Target relevant updates
+- Retail AI and store technology trends
+- Supply chain and logistics innovation
+- Labor and workforce technology trends
+
+## 6. CISCO STRATEGIC ANGLE
+- 3–5 opportunities where Cisco solutions are relevant to HD news this week
+- 2–3 competitive risks to be aware of (Google Cloud, Aruba, Juniper, etc.)
+- 3–4 suggested conversation starters for HD meetings this week
+- Key executive alignment opportunities
+
+## 7. RECOMMENDED FOLLOW-UPS
+- Key people to engage at HD or SRS this week
+- 4–5 questions to ask in upcoming meetings
+- Cisco solutions to position (Meraki, SD-WAN, Security Cloud, ThousandEyes,
+  AI-Ready Infrastructure, etc.)
+
+## 8. WHAT TO WATCH NEXT WEEK
+- Upcoming HD events, earnings calls, analyst days, or announcements
+- Key industry events relevant to HD's technology agenda
