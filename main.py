@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     t = datetime.today()
     if post_as_file:
-        post_as_file = f'{t.year}{t.month}{t.day}.'.join(post_as_file.split('.'))
+        post_as_file = f'.{t.year}{t.month}{t.day}.'.join(post_as_file.split('.'))
         with open(post_as_file, "w") as f:
             f.write(response)
         message = f'# Joke of the day {t.month}/{t.day}/{t.year}'
