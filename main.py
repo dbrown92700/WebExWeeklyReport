@@ -66,4 +66,4 @@ if __name__ == "__main__":
 
     post_webex_message(webex_key, message, files=[post_as_file])
     print(f'{t.month:02}/{t.day:02}-{t.hour:02}:{t.minute:02} '
-          f'Input Tokens: {response.usage.inputTokens}  Output Tokens: {response.usage.outputTokens}')
+          f'Input Tokens: {response.usage.input_tokens}  Output Tokens: {response.usage.output_tokens}')
