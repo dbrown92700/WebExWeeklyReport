@@ -7,16 +7,12 @@ from datetime import datetime
 
 def get_claude_response(token: str, model: str, prompt: str, max_tokens: int):
     client = Anthropic(api_key=token)
-    message = client.messages.create(
-        max_tokens=max_tokens,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            }
-        ],
-        model=model
-    )
+    with client.messages.stream(
+            max_tokens=max_tokens,
+            messages=[{"role": "user", "content": prompt}],
+            model=model
+    ) as stream:
+        message = stream.get_final_message()
     client.close()
 
     return message
