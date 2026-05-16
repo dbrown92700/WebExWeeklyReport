@@ -7,7 +7,6 @@ from datetime import datetime
 
 def get_claude_response(token: str, model: str, prompt: str):
     client = Anthropic(api_key=token)
-    client.messages.create()
     message = client.messages.create(
         messages=[
             {
