@@ -1,0 +1,229 @@
+Using your web search tool, research and produce a complete
+Home Depot (NYSE: HD) weekly intelligence briefing for the last 7 days.
+ 
+Search for current information on all of the following topics before writing:
+1. HD stock price today and 7-day change
+2. Home Depot financial, organizational or other business news
+3. Home Depot AI and technology announcements
+4. Announcements from Home Depot competitors
+
+After researching, produce a COMPLETE HTML document with this exact structure and CSS:
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Depot Intelligence Briefing — {date_str}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {{
+    --orange: #F96302; --orange-light: #FF8A3D; --black: #0A0A0A;
+    --charcoal: #1A1A1A; --surface: #141414; --border: rgba(249,99,2,0.2);
+    --muted: #666; --text: #E8E8E8; --text-dim: #999;
+    --green: #00D68F; --red: #FF4757; --blue: #4DA6FF; --yellow: #FFD166;
+  }}
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{ background: var(--black); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-weight: 300; line-height: 1.7; }}
+  .masthead {{ background: var(--charcoal); border-bottom: 2px solid var(--orange); padding: 36px 48px 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }}
+  .brand-line {{ font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--orange); text-transform: uppercase; margin-bottom: 4px; }}
+  .masthead h1 {{ font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em; color: #fff; line-height: 1.1; }}
+  .masthead h1 span {{ color: var(--orange); }}
+  .masthead-meta {{ text-align: right; }}
+  .masthead-meta .date {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; }}
+  .masthead-meta .ticker {{ font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 500; color: #fff; line-height: 1; margin-top: 4px; }}
+  .masthead-meta .ticker .price {{ color: var(--orange); }}
+  .masthead-meta .ticker .change {{ font-size: 13px; margin-left: 8px; }}
+  .toc {{ background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 48px; display: flex; gap: 6px; flex-wrap: wrap; }}
+  .toc a {{ font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; padding: 5px 12px; border: 1px solid transparent; border-radius: 2px; white-space: nowrap; }}
+  .toc a:hover {{ color: var(--orange); border-color: var(--border); }}
+  .container {{ max-width: 940px; margin: 0 auto; padding: 0 48px 80px; }}
+  .section {{ padding: 52px 0 0; }}
+  .section-header {{ display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }}
+  .section-num {{ font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--orange); letter-spacing: 0.15em; padding: 3px 8px; border: 1px solid var(--orange); border-radius: 2px; flex-shrink: 0; }}
+  .section-title {{ font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: #fff; }}
+  .exec-bullets {{ display: flex; flex-direction: column; gap: 12px; }}
+  .exec-bullet {{ display: flex; gap: 16px; align-items: flex-start; background: var(--surface); border-left: 3px solid var(--orange); padding: 14px 18px; border-radius: 0 4px 4px 0; }}
+  .exec-bullet .icon {{ font-size: 18px; flex-shrink: 0; margin-top: 1px; }}
+  .exec-bullet p {{ font-size: 14px; line-height: 1.6; }}
+  .exec-bullet strong {{ color: #fff; font-weight: 500; }}
+  .stock-card {{ background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 20px 24px; display: flex; align-items: center; gap: 32px; margin-bottom: 28px; flex-wrap: wrap; }}
+  .stock-price-main {{ font-family: 'Syne', sans-serif; font-weight: 800; font-size: 36px; color: #fff; line-height: 1; }}
+  .stock-sub {{ font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-dim); margin-top: 4px; }}
+  .stock-stat {{ text-align: center; }}
+  .stock-stat .label {{ font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); }}
+  .stock-stat .value {{ font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500; margin-top: 2px; }}
+  .red {{ color: var(--red); }} .green {{ color: var(--green); }} .blue {{ color: var(--blue); }} .yellow {{ color: var(--yellow); }}
+  .divider {{ width: 1px; height: 40px; background: var(--border); }}
+  .subsection {{ margin-bottom: 28px; }}
+  .subsection-title {{ font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }}
+  .item {{ background: var(--surface); border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; padding: 16px 20px; margin-bottom: 10px; }}
+  .item p {{ font-size: 14px; color: var(--text); }}
+  .item p strong {{ color: #fff; font-weight: 500; }}
+  .item-link {{ display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--orange); text-decoration: none; opacity: 0.8; }}
+  .item-link::before {{ content: '→'; }}
+  .tag {{ display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-right: 6px; margin-bottom: 6px; }}
+  .tag-risk {{ background: rgba(255,71,87,0.15); color: var(--red); border: 1px solid rgba(255,71,87,0.3); }}
+  .tag-opp {{ background: rgba(0,214,143,0.12); color: var(--green); border: 1px solid rgba(0,214,143,0.3); }}
+  .tag-cisco {{ background: rgba(77,166,255,0.12); color: var(--blue); border: 1px solid rgba(77,166,255,0.3); }}
+  .tag-watch {{ background: rgba(255,209,102,0.12); color: var(--yellow); border: 1px solid rgba(255,209,102,0.3); }}
+  .cisco-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }}
+  .cisco-card {{ background: var(--surface); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; padding: 18px 20px; }}
+  .cisco-card h4 {{ font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; color: #fff; margin-bottom: 10px; }}
+  .cisco-card ul {{ list-style: none; display: flex; flex-direction: column; gap: 7px; }}
+  .cisco-card ul li {{ font-size: 13px; color: var(--text); padding-left: 14px; position: relative; line-height: 1.5; }}
+  .cisco-card ul li::before {{ content: '·'; color: var(--orange); position: absolute; left: 0; font-size: 18px; line-height: 1; top: 1px; }}
+  .followup-grid {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }}
+  .followup-card {{ background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 18px 20px; }}
+  .followup-card h4 {{ font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }}
+  .followup-card ul {{ list-style: none; display: flex; flex-direction: column; gap: 8px; }}
+  .followup-card ul li {{ font-size: 13px; color: var(--text); padding-left: 14px; position: relative; line-height: 1.5; }}
+  .followup-card ul li::before {{ content: '›'; color: var(--orange); position: absolute; left: 0; }}
+  .comp-row {{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }}
+  footer {{ margin-top: 60px; padding: 24px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }}
+  footer p {{ font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }}
+</style>
+</head>
+<body>
+ 
+<header class="masthead">
+  <div class="masthead-left">
+    <div class="brand-line">Cisco · Account Intelligence · Home Depot</div>
+    <h1>HD Weekly <span>Briefing</span></h1>
+  </div>
+  <div class="masthead-meta">
+    <div class="date">WEEK OF {date_range.upper()}</div>
+    <div class="ticker">
+      <span class="price">[INSERT CURRENT HD PRICE FROM SEARCH]</span>
+      <span class="change [red or green based on direction]">[▼ or ▲] [7D %]</span>
+    </div>
+  </div>
+</header>
+ 
+<nav class="toc">
+  <a href="#exec">01 Exec Summary</a>
+  <a href="#financial">02 Financial</a>
+  <a href="#tech">03 Technology</a>
+  <a href="#subsidiary">04 Subsidiaries</a>
+  <a href="#industry">05 Industry Intel</a>
+  <a href="#cisco">06 Cisco Lens</a>
+  <a href="#followups">07 Follow-Ups</a>
+</nav>
+ 
+<div class="container">
+ 
+  <section class="section" id="exec">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Executive Summary</h2>
+    </div>
+    <div class="exec-bullets">
+      <!-- 3-5 exec-bullet divs, each with an emoji icon and a <p> with <strong> for the headline -->
+      <!-- Example structure:
+      <div class="exec-bullet">
+        <div class="icon">📉</div>
+        <p><strong>Headline here.</strong> 1-2 sentence detail.</p>
+      </div>
+      -->
+    </div>
+  </section>
+ 
+  <section class="section" id="financial">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Financial &amp; Corporate Developments</h2>
+    </div>
+    <!-- Stock card, then subsections for: Earnings, Leadership, M&A, Real Estate/Expansion, Macro/Tariffs -->
+    <!-- Stock card example:
+    <div class="stock-card">
+      <div><div class="stock-price-main">$XXX.XX</div><div class="stock-sub">NYSE: HD · {date_str}</div></div>
+      <div class="divider"></div>
+      <div class="stock-stat"><div class="label">7-Day Change</div><div class="value red">▼ X.X%</div></div>
+      <div class="stock-stat"><div class="label">52-Wk High</div><div class="value">$XXX</div></div>
+      <div class="stock-stat"><div class="label">52-Wk Low</div><div class="value red">$XXX</div></div>
+      <div class="stock-stat"><div class="label">Avg Analyst Target</div><div class="value green">$XXX</div></div>
+    </div>
+    -->
+    <!-- Each subsection:
+    <div class="subsection">
+      <div class="subsection-title">SUBSECTION NAME</div>
+      <div class="item">
+        <p><strong>Headline.</strong> Detail text.</p>
+        <a href="URL" class="item-link">Source Name</a>
+      </div>
+    </div>
+    -->
+  </section>
+ 
+  <section class="section" id="tech">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Technology &amp; Digital Transformation</h2>
+    </div>
+    <!-- Subsections: AI Announcements, Supply Chain Technology, Store Technology, 
+         Pro & Customer Digital Experience, Cybersecurity/Infrastructure, Competitive Vendor Mentions -->
+    <!-- Use tag spans for vendor labels: <span class="tag tag-watch">Google Cloud</span> -->
+  </section>
+ 
+  <section class="section" id="subsidiary">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Subsidiary Activity</h2>
+    </div>
+    <!-- Items for SRS Distribution, HD Supply, Home Depot Pro, The Company Store, etc. -->
+    <!-- Use tag-watch tags to label subsidiaries -->
+  </section>
+ 
+  <section class="section" id="industry">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Retail Industry Intelligence</h2>
+    </div>
+    <div class="comp-row">
+      <!-- Subsections for each competitor/trend in a 2-column grid -->
+      <!-- Competitors: Lowe's, Walmart, Amazon, Target/Costco, Macro Trends -->
+    </div>
+  </section>
+ 
+  <section class="section" id="cisco">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Cisco Strategic Angle</h2>
+    </div>
+    <div class="cisco-grid">
+      <!-- 4 cisco-card divs:
+           1. Opportunities (tag-opp tags)
+           2. Competitive Risks (tag-risk tags)
+           3. Conversation Starters
+           4. Executive Alignment -->
+    </div>
+  </section>
+ 
+  <section class="section" id="followups">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Recommended Follow-Ups</h2>
+    </div>
+    <div class="followup-grid">
+      <!-- 3 followup-card divs: People to Engage, Questions to Ask, Cisco Solutions to Position -->
+    </div>
+  </section>
+ 
+</div>
+ 
+<footer>
+  <p>Cisco Account Intelligence · Home Depot (NYSE: HD) · Week of {date_range}</p>
+  <p>For internal use only · AI-generated with web search · Verify before client use</p>
+</footer>
+ 
+</body>
+</html>
+ 
+IMPORTANT INSTRUCTIONS:
+- Fill in ALL placeholder comments with real, researched content. Do not leave any HTML comments or placeholder text in the output.
+- Every .item div should have at least one <p> with substantive content.
+- Every significant claim must have an <a class="item-link"> linking to the actual source URL.
+- The stock price, 7-day change, 52-week high/low must come from web search results, not your training data.
+- If a section has no news this week, write "No significant developments this week." in an .item div.
+- Output ONLY the HTML document. No text before or after it.
