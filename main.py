@@ -50,11 +50,11 @@ def generate_briefing(system_prompt: str, user_prompt: str):
         print('Entering the neverending loop...', flush=True)
         for event in stream:
             events.append(event)
-            # logger.info(event)
-            print(event, file=sys.stderr, flush=True)
+            logger.info(event)
+            # print(event, file=sys.stderr, flush=True)
 
-    final = stream.get_final_message()
-    logger.info(f'\n\n\nFinal Message:\n\n\n{final}\n\n\n')
+    # final = stream.get_final_message()
+    # logger.info(f'\n\n\nFinal Message:\n\n\n{final}\n\n\n')
 
     with open('stream.pickle', 'wb') as handle:
         pickle.dump(events, handle)
