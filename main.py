@@ -15,10 +15,10 @@ logging.basicConfig(
     filemode='w',
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-console = logging.StreamHandler(sys.stdout)
-console.setLevel(logging.INFO)
-console.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-logging.root.addHandler(console)
+# console = logging.StreamHandler(sys.stdout)
+# console.setLevel(logging.INFO)
+# console.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+# logging.root.addHandler(console)
 
 def generate_briefing(system_prompt: str, user_prompt: str):
     """Call the Claude API with web search and return the HTML briefing."""
@@ -47,11 +47,9 @@ def generate_briefing(system_prompt: str, user_prompt: str):
             {"role": "user", "content": user_prompt}
         ],
     ) as stream:
-        print('Entering the neverending loop...', flush=True)
         for event in stream:
             events.append(event)
             logger.info(event)
-            # print(event, file=sys.stderr, flush=True)
 
     # final = stream.get_final_message()
     # logger.info(f'\n\n\nFinal Message:\n\n\n{final}\n\n\n')
@@ -108,8 +106,8 @@ def main():
         logger.info("No room found")
         exit(1)
 
-    ai_prompt = open("test_prompt.txt", "r").read()
-    sys_prompt = open("test_system_prompt.txt", "r").read()
+    ai_prompt = open("prompt.txt", "r").read()
+    sys_prompt = open("system_prompt.txt", "r").read()
 
     response = generate_briefing(system_prompt=sys_prompt, user_prompt=ai_prompt)
 
